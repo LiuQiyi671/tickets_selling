@@ -9,8 +9,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -38,16 +36,12 @@ public class MovieController {
                           @RequestParam("movieactor") String movieactor,
                           @RequestParam("movielanguage") String movielanguage,
                           @RequestParam("moviedescription") String moviedescription,
-                          @RequestParam("movieshowtime") String movieshowtime) throws ParseException, IOException {
+                          @RequestParam("movieshowtime") String moviepublicdate) throws ParseException, IOException {
         Movie movie = new Movie();
         movie.setMovietype(movietype);
         movie.setMoviename(moviename);
         movie.setMovieid(null);
-
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        Date date = simpleDateFormat.parse(movieshowtime);
-        movie.setMovieshowtime(date);
-
+        movie.setMoviepublicdate(moviepublicdate);
         movie.setMovielanguage(movielanguage);
         movie.setMovieduration(movieduration);
         movie.setMoviedirector(moviedirector);

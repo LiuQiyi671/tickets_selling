@@ -3,10 +3,8 @@ package com.cinema.tickets_selling.entity;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
-import java.util.Date;
 
 @Data
 @TableName("movie")
@@ -44,8 +42,7 @@ public class Movie implements Serializable {
     private byte[] file;
 
     //影片上映时间
-    @DateTimeFormat(pattern="yyyy-MM-dd")
-    private Date moviepublicdate;
+    private String moviepublicdate;
 
     //影片简介
     private String moviedescription;
