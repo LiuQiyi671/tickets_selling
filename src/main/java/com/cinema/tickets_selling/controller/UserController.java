@@ -36,27 +36,27 @@ public class UserController {
         return userService.loginUser(user.getUsername(), user.getPassword());
     }
 
-    @ApiOperation("删除用户")
+    @ApiOperation("管理员根据用户id删除用户")
     @PostMapping("/admin/delete_user")
     public Boolean deleteUser(@RequestParam("id") Long id){
         userService.removeUser(id);
         return true;
     }
 
-    @ApiOperation("修改用户信息")
+    @ApiOperation("用户根据用户id修改用户信息")
     @PostMapping("/user/update/{id}")
     public Boolean updateUser(@PathVariable("id") User user){
         userService.updateUser(user);
         return true;
     }
 
-    @ApiOperation("获取用户信息")
+    @ApiOperation("用户根据用户id获取用户信息")
     @GetMapping("/user/user_info")
     public User showUserInfo(@RequestParam("id") Long id){
         return userService.showUserInfo(id);
     }
 
-    @ApiOperation("查询所有用户")
+    @ApiOperation("管理员查询所有用户列表")
     @GetMapping("/admin/user_list/{page}")
     public IPage<User> getUserList(@PathVariable("page") int page){
 
@@ -68,11 +68,12 @@ public class UserController {
     }
 
 
-    @ApiOperation("根据手机号码查询用户信息")
+    @ApiOperation("管理员根据手机号码查询用户信息")
     @GetMapping("/admin/get_one_user")
     public User getOneUser(@RequestParam("tel") String tel){
         return userService.selectOneUser(tel);
     }
+
 
 
 }

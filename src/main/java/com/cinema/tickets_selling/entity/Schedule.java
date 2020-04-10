@@ -1,6 +1,5 @@
 package com.cinema.tickets_selling.entity;
 
-import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
@@ -33,7 +32,7 @@ public class Schedule implements Serializable {
     //座位信息
     private String seat;
 
-    @TableField(exist = false)
-    private Movie movieentity;
+//    @TableField(exist = false)
+//    private Movie movieentity;
 
 }

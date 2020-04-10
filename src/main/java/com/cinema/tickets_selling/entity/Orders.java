@@ -1,6 +1,5 @@
 package com.cinema.tickets_selling.entity;
 
-import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
@@ -40,9 +39,9 @@ public class Orders implements Serializable {
     //手机取票码
     private String phonecode;
 
-    @TableField(exist = false)
-    private User userentity;
-
-    @TableField(exist = false)
-    private Schedule scheduleentity;
+//    @TableField(exist = false)
+//    private User userentity;
+//
+//    @TableField(exist = false)
+//    private Schedule scheduleentity;
 }

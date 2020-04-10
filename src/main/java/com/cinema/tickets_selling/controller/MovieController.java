@@ -68,7 +68,7 @@ public class MovieController {
         return true;
     }
 
-    @ApiOperation("用户获取电影信息")
+    @ApiOperation("用户根据影片id获取电影信息")
     @GetMapping("/user/movie/movie_info")
     public Movie UserGetMovieInfo(@RequestParam("id") Long id){
         return movieService.showMovieInfo(id);

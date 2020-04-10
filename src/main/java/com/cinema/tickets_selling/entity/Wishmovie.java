@@ -1,6 +1,5 @@
 package com.cinema.tickets_selling.entity;
 
-import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
@@ -21,9 +20,9 @@ public class Wishmovie implements Serializable {
     //影片id
     private Long movieid;
 
-    @TableField(exist = false)
-    private User userentity;
-
-    @TableField(exist = false)
-    private Movie movieentity;
+//    @TableField(exist = false)
+//    private User userentity;
+//
+//    @TableField(exist = false)
+//    private Movie movieentity;
 }
