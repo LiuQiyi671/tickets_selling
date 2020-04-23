@@ -3,6 +3,7 @@ package com.cinema.tickets_selling.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.cinema.tickets_selling.entity.Orders;
 import com.cinema.tickets_selling.entity.Schedule;
 import com.cinema.tickets_selling.service.ScheduleService;
 import io.swagger.annotations.Api;
@@ -45,14 +46,27 @@ public class ScheduleController {
     }
 
 
-    @ApiOperation("管理员查询所有排片列表")
+//    @ApiOperation("管理员查询所有排片列表")
+//    @GetMapping("/admin/schedule_list/{page}")
+//    public IPage<Schedule> getScheduleList(@PathVariable("page") int page){
+//
+//        Page<Schedule> p = new Page<Schedule>(page,10);
+//        QueryWrapper<Schedule> queryWrapper = new QueryWrapper<>();
+//        queryWrapper.gt("scheduleid", 0);
+//
+//        return scheduleService.getScheduleList(p,queryWrapper);
+//    }
+
+
+    @ApiOperation("管理员根据影片id查询此影片所有场次")
     @GetMapping("/admin/schedule_list/{page}")
-    public IPage<Schedule> getScheduleList(@PathVariable("page") int page){
+    public IPage<Schedule> getScheduleListByMovieId(@PathVariable("page") int page,
+                                                   @RequestParam("movieid") Long movieid){
 
         Page<Schedule> p = new Page<Schedule>(page,10);
-        QueryWrapper<Schedule> queryWrapper = new QueryWrapper<>();
-        queryWrapper.gt("scheduleid", 0);
+        QueryWrapper<Orders> queryWrapper = new QueryWrapper<>();
+        queryWrapper.gt("scheduleid", 0).eq("movieid",movieid);
 
-        return scheduleService.getScheduleList(p,queryWrapper);
+        return scheduleService.getScheduleListByMovieId(p,queryWrapper);
     }
 }

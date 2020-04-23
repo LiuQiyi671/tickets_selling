@@ -36,7 +36,8 @@ public class MovieController {
                           @RequestParam("movieactor") String movieactor,
                           @RequestParam("movielanguage") String movielanguage,
                           @RequestParam("moviedescription") String moviedescription,
-                          @RequestParam("movieshowtime") String moviepublicdate) throws ParseException, IOException {
+                          @RequestParam("moviepublicdate") String moviepublicdate,
+                          @RequestParam("moviewishpeoplenum") Integer moviewishpeoplenum) throws ParseException, IOException {
         Movie movie = new Movie();
         movie.setMovietype(movietype);
         movie.setMoviename(moviename);
@@ -49,7 +50,7 @@ public class MovieController {
         movie.setMoviecountry(moviecountry);
         movie.setMovieclassify(movieclassify);
         movie.setMovieactor(movieactor);
-
+        movie.setMoviewishpeoplenum(moviewishpeoplenum);
         movie.setFile(file.getBytes());
         return movieService.addMovie(movie);
     }
@@ -70,21 +71,21 @@ public class MovieController {
 
     @ApiOperation("用户根据影片id获取电影信息")
     @GetMapping("/user/movie/movie_info")
-    public Movie UserGetMovieInfo(@RequestParam("id") Long id){
+    public Movie userGetMovieInfo(@RequestParam("id") Long id){
         return movieService.showMovieInfo(id);
     }
 
     @ApiOperation("用户查询所有热映电影")
     @GetMapping("/user/movie/hot_movie_list")
-    public List<Movie> userGetHotMovieList(@RequestParam("movieclassify") String movieclassify){
-        return movieService.getHotMovieList(movieclassify);
+    public List<Movie> userGetHotMovieList(){
+        return movieService.getHotMovieList();
     }
 
     
     @ApiOperation("用户查询所有即将上映电影")
     @GetMapping("/user/movie/upcoming_movie_list")
-    public List<Movie> UserGetUpcomingMovieList(String movieclassify){
-        return movieService.getUpcomingMovieList(movieclassify);
+    public List<Movie> userGetUpcomingMovieList(){
+        return movieService.getUpcomingMovieList();
     }
 
     @ApiOperation("管理员获取电影信息")
@@ -95,15 +96,15 @@ public class MovieController {
 
     @ApiOperation("管理员查询所有热映电影")
     @GetMapping("/admin/movie/hot_movie_list")
-    public List<Movie> getHotMovieList(@RequestParam("movieclassify") String movieclassify){
-        return movieService.getHotMovieList(movieclassify);
+    public List<Movie> getHotMovieList(){
+        return movieService.getHotMovieList();
     }
 
 
     @ApiOperation("管理员查询所有即将上映电影")
     @GetMapping("/admin/movie/upcoming_movie_list")
-    public List<Movie> getUpcomingMovieList(String movieclassify){
-        return movieService.getUpcomingMovieList(movieclassify);
+    public List<Movie> getUpcomingMovieList(){
+        return movieService.getUpcomingMovieList();
     }
 
     @ApiOperation("管理员根据电影名称查询电影信息")

@@ -47,11 +47,12 @@ public class OrdersController {
 
     @ApiOperation("管理员根据排片id查询某一场次所有订单列表")
     @GetMapping("/admin/order_list/{page}")
-    public IPage<Orders> getOrdersListByScheduleId(@PathVariable("page") int page){
+    public IPage<Orders> getOrdersListByScheduleId(@PathVariable("page") int page,
+                                                   @RequestParam("scheduleid") Long scheduleid){
 
         Page<Orders> p = new Page<Orders>(page,10);
         QueryWrapper<Orders> queryWrapper = new QueryWrapper<>();
-        queryWrapper.gt("orderid", 0);
+        queryWrapper.gt("orderid", 0).eq("scheduleid",scheduleid);
 
         return ordersService.getOrdersListByScheduleId(p,queryWrapper);
     }

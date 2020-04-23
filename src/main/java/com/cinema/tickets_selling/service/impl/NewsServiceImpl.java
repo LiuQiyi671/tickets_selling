@@ -53,7 +53,7 @@ public class NewsServiceImpl extends ServiceImpl<NewsMapper, News> implements Ne
     @Override
     public List<News> getShortNewsList() {
         QueryWrapper queryWrapper = new QueryWrapper();
-        queryWrapper.between("id",0,5);
+        queryWrapper.between("newsid",0,10);
         List<News> NewsList = newsMapper.selectList(queryWrapper);
         return NewsList;
     }
@@ -61,7 +61,7 @@ public class NewsServiceImpl extends ServiceImpl<NewsMapper, News> implements Ne
     @Override
     public List<News> getNewsList() {
         QueryWrapper queryWrapper = new QueryWrapper();
-        queryWrapper.gt("id",0);
+        queryWrapper.gt("newsid",0);
         List<News> NewsList = newsMapper.selectList(queryWrapper);
         return NewsList;
     }

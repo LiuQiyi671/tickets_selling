@@ -40,8 +40,19 @@ public class ScheduleServiceImpl extends ServiceImpl<ScheduleMapper, Schedule> i
         return scheduleMapper.selectById(scheduleid);
     }
 
+//    @Override
+//    public IPage<Schedule> getScheduleList(Page p, QueryWrapper queryWrapper) throws RuntimeException {
+//        try {
+//            IPage<Schedule> iPage = scheduleMapper.selectPage(p,queryWrapper);
+//            return iPage;
+//        } catch (Exception e) {
+//            throw new RuntimeException(e.getMessage());
+//        }
+//    }
+
+
     @Override
-    public IPage<Schedule> getScheduleList(Page p, QueryWrapper queryWrapper) throws RuntimeException {
+    public IPage<Schedule> getScheduleListByMovieId(Page p, QueryWrapper queryWrapper) throws RuntimeException {
         try {
             IPage<Schedule> iPage = scheduleMapper.selectPage(p,queryWrapper);
             return iPage;

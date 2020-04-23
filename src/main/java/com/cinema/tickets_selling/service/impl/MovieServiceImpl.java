@@ -46,7 +46,7 @@ public class MovieServiceImpl extends ServiceImpl<MovieMapper, Movie> implements
         }    }
 
     @Override
-    public List<Movie> getHotMovieList(String movieclassify) {
+    public List<Movie> getHotMovieList() {
         QueryWrapper queryWrapper = new QueryWrapper();
         queryWrapper.eq("movieclassify","热映影片");
         List<Movie> hotmovielist = movieMapper.selectList(queryWrapper);
@@ -54,7 +54,7 @@ public class MovieServiceImpl extends ServiceImpl<MovieMapper, Movie> implements
     }
 
     @Override
-    public List<Movie> getUpcomingMovieList(String movieclassify) {
+    public List<Movie> getUpcomingMovieList() {
         QueryWrapper queryWrapper = new QueryWrapper();
         queryWrapper.eq("movieclassify","即将上映");
         List<Movie> upcomingmovielist = movieMapper.selectList(queryWrapper);

@@ -17,10 +17,10 @@ public interface MovieService extends IService<Movie> {
     Movie updateMovie(Movie movie);
 
     //查询所有正在热映影片列表
-    List<Movie> getHotMovieList(String movieclassify);
+    List<Movie> getHotMovieList();
 
     //查询所有即将上映影片列表
-    List<Movie> getUpcomingMovieList(String movieclassify);
+    List<Movie> getUpcomingMovieList();
 
     //根据影片id获取已发布影片信息
     Movie showMovieInfo(Long id);

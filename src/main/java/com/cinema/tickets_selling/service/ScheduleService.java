@@ -17,6 +17,8 @@ public interface ScheduleService extends IService<Schedule> {
     //管理员根据排片id查看本场次相关信息
     Schedule showScheduleInfo(Long scheduleid);
 
-    IPage<Schedule> getScheduleList(Page p, QueryWrapper queryWrapper);
+//    IPage<Schedule> getScheduleList(Page p, QueryWrapper queryWrapper);
+
+    IPage<Schedule> getScheduleListByMovieId(Page p, QueryWrapper queryWrapper);
 
 }

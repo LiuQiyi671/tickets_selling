@@ -60,7 +60,7 @@ public class UserController {
     @GetMapping("/admin/user_list/{page}")
     public IPage<User> getUserList(@PathVariable("page") int page){
 
-        Page<User> p = new Page<User>(page,3);
+        Page<User> p = new Page<User>(page,5);
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
         queryWrapper.gt("userid", 0);
 
