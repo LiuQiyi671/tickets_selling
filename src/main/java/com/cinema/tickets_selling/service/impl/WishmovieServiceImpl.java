@@ -20,7 +20,7 @@ public class WishmovieServiceImpl extends ServiceImpl<WishmovieMapper, Wishmovie
 
 
     @Override
-    public Wishmovie addWishMovie(Long userid, Long movieid) {
+    public Wishmovie addWishMovie(Integer userid, Integer movieid) {
         Wishmovie wishmovie = new Wishmovie();
         wishmovie.setWishmovieid(null);
         wishmovie.setUserid(userid);
@@ -34,19 +34,19 @@ public class WishmovieServiceImpl extends ServiceImpl<WishmovieMapper, Wishmovie
     }
 
     @Override
-    public void removeWishMovie(Long userid, Long movieid) {
+    public void removeWishMovie(Integer userid, Integer movieid) {
         QueryWrapper<Wishmovie> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("userid",userid).eq("movieid",movieid);
         wishmovieMapper.delete(queryWrapper);
     }
 
     @Override
-    public Long[] getWishMovieByUserId(Long userid) {
+    public Integer[] getWishMovieByUserId(Integer userid) {
         QueryWrapper<Wishmovie> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("userid",userid);
 
         int count = 0;
-        Long intArr[] = new Long[wishmovieMapper.selectList(queryWrapper).size()];
+        Integer intArr[] = new Integer[wishmovieMapper.selectList(queryWrapper).size()];
         for( int i = 0; i < wishmovieMapper.selectList(queryWrapper).size(); i++ ) {
             intArr[count] = wishmovieMapper.selectList(queryWrapper).get(i).getMovieid();
             count++;

@@ -21,8 +21,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     }
 
     @Override
-    public Boolean loginUser(String username, String password) {
-        return userMapper.loginUser(username, password) != null;
+    public User loginUser(String username, String password) {
+        return userMapper.loginUser(username, password);
     }
 
     @Override
@@ -36,7 +36,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     }
 
     @Override
-    public void removeUser(Long id) {
+    public void removeUser(Integer id) {
         userMapper.deleteById(id);
     }
 
@@ -51,7 +51,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     }
 
     @Override
-    public User showUserInfo(Long id) {
+    public User showUserInfo(Integer id) {
         return userMapper.selectById(id);
     }
 

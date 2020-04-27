@@ -12,10 +12,10 @@ import java.math.BigDecimal;
 public class Schedule implements Serializable {
     //主键：排片id
     @TableId
-    private Long scheduleid;
+    private Integer scheduleid;
 
     //影片id
-    private Long movieid;
+    private Integer movieid;
 
     //影厅名称
     private String hallname;

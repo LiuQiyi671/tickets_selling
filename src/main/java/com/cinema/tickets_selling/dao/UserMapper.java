@@ -7,5 +7,5 @@ import org.apache.ibatis.annotations.Select;
 public interface UserMapper extends BaseMapper<User> {
 
     @Select("select * from user where username = #{username} and password = #{password}")
-    Boolean loginUser(String username, String password);
+    User loginUser(String username, String password);
 }

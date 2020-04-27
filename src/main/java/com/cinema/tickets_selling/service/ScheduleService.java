@@ -12,10 +12,10 @@ public interface ScheduleService extends IService<Schedule> {
     Schedule adminAddSchedule(Schedule schedule);
 
     //管理员根据排片id删除已发布排片
-    void adminRemoveSchedule(Long scheduleid);
+    void adminRemoveSchedule(Integer scheduleid);
 
     //管理员根据排片id查看本场次相关信息
-    Schedule showScheduleInfo(Long scheduleid);
+    Schedule showScheduleInfo(Integer scheduleid);
 
 //    IPage<Schedule> getScheduleList(Page p, QueryWrapper queryWrapper);
 

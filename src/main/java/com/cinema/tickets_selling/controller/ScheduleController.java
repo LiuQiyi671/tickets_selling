@@ -33,7 +33,7 @@ public class ScheduleController {
 
     @ApiOperation("管理员根据排片id删除排片")
     @PostMapping("/admin/delete_schedule")
-    public Boolean adminRemoveSchedule(@RequestParam("id") Long id){
+    public Boolean adminRemoveSchedule(@RequestParam("id") Integer id){
         scheduleService.adminRemoveSchedule(id);
         return true;
     }
@@ -41,7 +41,7 @@ public class ScheduleController {
 
     @ApiOperation("管理员根据排片id获取排片信息")
     @GetMapping("/admin/schedule_info")
-    public Schedule showScheduleInfo(@RequestParam("id") Long id){
+    public Schedule showScheduleInfo(@RequestParam("id") Integer id){
         return scheduleService.showScheduleInfo(id);
     }
 
@@ -61,7 +61,7 @@ public class ScheduleController {
     @ApiOperation("管理员根据影片id查询此影片所有场次")
     @GetMapping("/admin/schedule_list/{page}")
     public IPage<Schedule> getScheduleListByMovieId(@PathVariable("page") int page,
-                                                   @RequestParam("movieid") Long movieid){
+                                                   @RequestParam("movieid") Integer movieid){
 
         Page<Schedule> p = new Page<Schedule>(page,10);
         QueryWrapper<Orders> queryWrapper = new QueryWrapper<>();

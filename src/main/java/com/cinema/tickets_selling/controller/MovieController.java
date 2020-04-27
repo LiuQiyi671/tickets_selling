@@ -57,7 +57,7 @@ public class MovieController {
 
     @ApiOperation("管理员删除电影")
     @PostMapping("/admin/movie/delete_movie")
-    public Boolean deleteMovie(@RequestParam("id") Long id){
+    public Boolean deleteMovie(@RequestParam("id") Integer id){
         movieService.removeMovie(id);
         return true;
     }
@@ -71,7 +71,7 @@ public class MovieController {
 
     @ApiOperation("用户根据影片id获取电影信息")
     @GetMapping("/user/movie/movie_info")
-    public Movie userGetMovieInfo(@RequestParam("id") Long id){
+    public Movie userGetMovieInfo(@RequestParam("id") Integer id){
         return movieService.showMovieInfo(id);
     }
 
@@ -90,7 +90,7 @@ public class MovieController {
 
     @ApiOperation("管理员获取电影信息")
     @GetMapping("/admin/movie/movie_info")
-    public Movie adminGetMovieInfo(@RequestParam("id") Long id){
+    public Movie adminGetMovieInfo(@RequestParam("id") Integer id){
         return movieService.showMovieInfo(id);
     }
 

@@ -1,5 +1,8 @@
 package com.cinema.tickets_selling.controller;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.cinema.tickets_selling.entity.News;
 import com.cinema.tickets_selling.service.NewsService;
 import io.swagger.annotations.Api;
@@ -29,21 +32,29 @@ public class NewsController {
 
     @ApiOperation("管理员删除资讯")
     @PostMapping("/admin/news/delete_news")
-    public Boolean deleteNews(@RequestParam("id") Long id){
+    public Boolean deleteNews(@RequestParam("id") Integer id){
         newsService.removeNews(id);
         return true;
     }
 
     @ApiOperation("管理员修改资讯信息")
-    @PostMapping("/admin/news/update_news/{id}")
-    public Boolean updateNews(@PathVariable("id") News news){
-        newsService.updateNews(news);
+    @PostMapping("/admin/news/update_news")
+    public Boolean updateNews(@RequestParam("newsid") Integer newsid,
+                              @RequestParam("newstitle") String newstitle,
+                              @RequestParam("newsaddtime") String newsaddtime,
+                              @RequestParam("news") String news){
+        News newss = new News();
+        newss.setNewsid(newsid);
+        newss.setNewstitle(newstitle);
+        newss.setNewsaddtime(newsaddtime);
+        newss.setNews(news);
+        newsService.updateNews(newss);
         return true;
     }
 
     @ApiOperation("用户获取资讯内容")
     @GetMapping("/user/news/news_info")
-    public News showNewsInfo(@RequestParam("id") Long id){
+    public News showNewsInfo(@RequestParam("id") Integer id){
         return newsService.showNewsInfo(id);
     }
 
@@ -56,12 +67,16 @@ public class NewsController {
     @ApiOperation("用户查询所有资讯列表")
     @GetMapping("/user/news/news_list")
     public List<News> userGetNewsList(){
-        return newsService.getNewsList();
+        return newsService.getUserNewsList();
     }
 
     @ApiOperation("管理员查询所有资讯列表")
-    @GetMapping("/admin/news/news_list")
-    public List<News> adminGetNewsList(){
-        return newsService.getNewsList();
+    @GetMapping("/admin/news_list/{page}")
+    public IPage<News> adminGetNewsList(@PathVariable("page") int page){
+        Page<News> p = new Page<News>(page,5);
+        QueryWrapper<News> queryWrapper = new QueryWrapper<>();
+        queryWrapper.gt("newsid", 0).orderByDesc("newsaddtime");
+
+        return newsService.getAdminNewsList(p,queryWrapper);
     }
 }

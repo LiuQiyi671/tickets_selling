@@ -32,7 +32,7 @@ public class MovieServiceImpl extends ServiceImpl<MovieMapper, Movie> implements
     }
 
     @Override
-    public void removeMovie(Long id) {
+    public void removeMovie(Integer id) {
         movieMapper.deleteById(id);
     }
 
@@ -62,7 +62,7 @@ public class MovieServiceImpl extends ServiceImpl<MovieMapper, Movie> implements
     }
 
     @Override
-    public Movie showMovieInfo(Long id) {
+    public Movie showMovieInfo(Integer id) {
         return movieMapper.selectById(id);
     }
 

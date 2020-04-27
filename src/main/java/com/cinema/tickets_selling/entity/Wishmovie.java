@@ -12,13 +12,13 @@ public class Wishmovie implements Serializable {
 
     //主键：想看影片id
     @TableId
-    private Long wishmovieid;
+    private Integer wishmovieid;
 
     //用户id
-    private Long userid;
+    private Integer userid;
 
     //影片id
-    private Long movieid;
+    private Integer movieid;
 
 //    @TableField(exist = false)
 //    private User userentity;

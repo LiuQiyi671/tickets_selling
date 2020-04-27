@@ -31,12 +31,12 @@ public class ScheduleServiceImpl extends ServiceImpl<ScheduleMapper, Schedule> i
     }
 
     @Override
-    public void adminRemoveSchedule(Long scheduleid) {
+    public void adminRemoveSchedule(Integer scheduleid) {
         scheduleMapper.deleteById(scheduleid);
     }
 
     @Override
-    public Schedule showScheduleInfo(Long scheduleid) {
+    public Schedule showScheduleInfo(Integer scheduleid) {
         return scheduleMapper.selectById(scheduleid);
     }
 

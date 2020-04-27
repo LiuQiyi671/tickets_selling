@@ -1,6 +1,8 @@
 package com.cinema.tickets_selling.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.cinema.tickets_selling.dao.NewsMapper;
 import com.cinema.tickets_selling.entity.News;
@@ -31,7 +33,7 @@ public class NewsServiceImpl extends ServiceImpl<NewsMapper, News> implements Ne
     }
 
     @Override
-    public void removeNews(Long id) {
+    public void removeNews(Integer id) {
         newsMapper.deleteById(id);
     }
 
@@ -46,7 +48,7 @@ public class NewsServiceImpl extends ServiceImpl<NewsMapper, News> implements Ne
     }
 
     @Override
-    public News showNewsInfo(Long id) {
+    public News showNewsInfo(Integer id) {
         return newsMapper.selectById(id);
     }
 
@@ -59,10 +61,20 @@ public class NewsServiceImpl extends ServiceImpl<NewsMapper, News> implements Ne
     }
 
     @Override
-    public List<News> getNewsList() {
-        QueryWrapper queryWrapper = new QueryWrapper();
-        queryWrapper.gt("newsid",0);
+    public List<News> getUserNewsList() {
+        QueryWrapper<News> queryWrapper = new QueryWrapper<>();
+        queryWrapper.gt("newsid",0).orderByDesc("newsaddtime");
         List<News> NewsList = newsMapper.selectList(queryWrapper);
         return NewsList;
+    }
+
+    @Override
+    public IPage<News> getAdminNewsList(Page p, QueryWrapper queryWrapper) throws RuntimeException {
+        try {
+            IPage<News> iPage = newsMapper.selectPage(p,queryWrapper);
+            return iPage;
+        } catch (Exception e) {
+            throw new RuntimeException(e.getMessage());
+        }
     }
 }

@@ -13,13 +13,13 @@ public class Orders implements Serializable {
 
     //主键：订单id
     @TableId
-    private Long orderid;
+    private Integer orderid;
 
     //用户id
-    private Long userid;
+    private Integer userid;
 
     //排片id
-    private Long scheduleid;
+    private Integer scheduleid;
 
     //下单手机号码
     private String tel;

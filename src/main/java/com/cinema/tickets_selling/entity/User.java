@@ -11,7 +11,7 @@ import java.io.Serializable;
 public class User implements Serializable {
     //主键：用户id
     @TableId
-    private Long userid;
+    private Integer userid;
 
     //用户名
     private String username;

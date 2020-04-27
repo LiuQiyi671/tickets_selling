@@ -32,7 +32,7 @@ public class OrdersController {
 
     @ApiOperation("用户退票")
     @PostMapping("/user/withdraw")
-    public Boolean userRemoveOrder(@RequestParam("id") Long id){
+    public Boolean userRemoveOrder(@RequestParam("id") Integer id){
         ordersService.userRemoveOrder(id);
         return true;
     }
@@ -40,7 +40,7 @@ public class OrdersController {
 
     @ApiOperation("用户根据订单id获取订单信息")
     @GetMapping("/user/order_info")
-    public Orders showOrderInfo(@RequestParam("id") Long id){
+    public Orders showOrderInfo(@RequestParam("id") Integer id){
         return ordersService.showOrderInfo(id);
     }
 
@@ -48,7 +48,7 @@ public class OrdersController {
     @ApiOperation("管理员根据排片id查询某一场次所有订单列表")
     @GetMapping("/admin/order_list/{page}")
     public IPage<Orders> getOrdersListByScheduleId(@PathVariable("page") int page,
-                                                   @RequestParam("scheduleid") Long scheduleid){
+                                                   @RequestParam("scheduleid") Integer scheduleid){
 
         Page<Orders> p = new Page<Orders>(page,10);
         QueryWrapper<Orders> queryWrapper = new QueryWrapper<>();

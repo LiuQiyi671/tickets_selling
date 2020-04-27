@@ -31,12 +31,12 @@ public class OrdersServiceImpl extends ServiceImpl<OrdersMapper, Orders> impleme
     }
 
     @Override
-    public void userRemoveOrder(Long orderid) {
+    public void userRemoveOrder(Integer orderid) {
         ordersMapper.deleteById(orderid);
     }
 
     @Override
-    public Orders showOrderInfo(Long orderid) {
+    public Orders showOrderInfo(Integer orderid) {
         return ordersMapper.selectById(orderid);
     }
 

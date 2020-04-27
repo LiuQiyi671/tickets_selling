@@ -32,27 +32,39 @@ public class UserController {
 
     @ApiOperation("用户登录")
     @PostMapping("/user/login")
-    public Boolean loginUser(@RequestBody User user){
+    public User loginUser(@RequestBody User user){
         return userService.loginUser(user.getUsername(), user.getPassword());
     }
 
     @ApiOperation("管理员根据用户id删除用户")
     @PostMapping("/admin/delete_user")
-    public Boolean deleteUser(@RequestParam("id") Long id){
+    public Boolean deleteUser(@RequestParam("id") Integer id){
         userService.removeUser(id);
         return true;
     }
 
     @ApiOperation("用户根据用户id修改用户信息")
-    @PostMapping("/user/update/{id}")
-    public Boolean updateUser(@PathVariable("id") User user){
+    @PostMapping("/user/update")
+    public Boolean updateUser(@RequestParam("userid") Integer userid,
+                              @RequestParam("username") String username,
+                              @RequestParam("password") String password,
+                              @RequestParam("tel") String tel,
+                              @RequestParam("email") String email,
+                              @RequestParam("gender") String gender){
+        User user = new User();
+        user.setUserid(userid);
+        user.setUsername(username);
+        user.setPassword(password);
+        user.setTel(tel);
+        user.setEmail(email);
+        user.setGender(gender);
         userService.updateUser(user);
         return true;
     }
 
     @ApiOperation("用户根据用户id获取用户信息")
     @GetMapping("/user/user_info")
-    public User showUserInfo(@RequestParam("id") Long id){
+    public User showUserInfo(@RequestParam("id") Integer id){
         return userService.showUserInfo(id);
     }
 

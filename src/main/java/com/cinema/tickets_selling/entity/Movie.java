@@ -12,7 +12,7 @@ public class Movie implements Serializable {
 
     //主键：影片id
     @TableId
-    private Long movieid;
+    private Integer movieid;
 
     //影片名称
     private String moviename;

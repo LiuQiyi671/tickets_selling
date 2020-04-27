@@ -21,21 +21,21 @@ public class WishmovieController {
 
     @ApiOperation("用户添加想看影片")
     @PostMapping("/user/addwishmovie")
-    public Wishmovie addWishMovie(@RequestParam("userid") Long userid,
-                                  @RequestParam("movieid") Long movieid){
+    public Wishmovie addWishMovie(@RequestParam("userid") Integer userid,
+                                  @RequestParam("movieid") Integer movieid){
         return wishmovieService.addWishMovie(userid,movieid);
     }
 
     @ApiOperation("用户取消想看影片")
     @PostMapping("/user/removewishmovie")
-    public void removeWishMovie(@RequestParam("userid") Long userid,
-                                  @RequestParam("movieid") Long movieid){
+    public void removeWishMovie(@RequestParam("userid") Integer userid,
+                                  @RequestParam("movieid") Integer movieid){
         wishmovieService.removeWishMovie(userid,movieid);
     }
 
     @ApiOperation("根据用户id查看想看影片列表")
     @GetMapping("/user/getwishmovie")
-    public Long[] getWishMovieByUserId(@RequestParam("userid") Long userid){
+    public Integer[] getWishMovieByUserId(@RequestParam("userid") Integer userid){
         return wishmovieService.getWishMovieByUserId(userid);
     }
 }
