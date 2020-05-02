@@ -10,6 +10,8 @@ import com.cinema.tickets_selling.service.OrdersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class OrdersServiceImpl extends ServiceImpl<OrdersMapper, Orders> implements OrdersService {
 
@@ -38,6 +40,13 @@ public class OrdersServiceImpl extends ServiceImpl<OrdersMapper, Orders> impleme
     @Override
     public Orders showOrderInfo(Integer orderid) {
         return ordersMapper.selectById(orderid);
+    }
+
+    @Override
+    public List<Orders> getUserOrdersList(Integer userid) {
+        QueryWrapper<Orders> queryWrapper = new QueryWrapper<>();
+        queryWrapper.ge("orderid","0").eq("userid",userid);
+        return ordersMapper.selectList(queryWrapper);
     }
 
     @Override

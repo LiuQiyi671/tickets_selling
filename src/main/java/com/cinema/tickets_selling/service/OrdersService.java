@@ -6,6 +6,8 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.cinema.tickets_selling.entity.Orders;
 
+import java.util.List;
+
 public interface OrdersService extends IService<Orders> {
 
     //用户购票下单
@@ -16,6 +18,9 @@ public interface OrdersService extends IService<Orders> {
 
     //用户根据订单id查看订单信息
     Orders showOrderInfo(Integer orderid);
+
+    //根据用户id查询用户所有订单列表
+    List<Orders> getUserOrdersList(Integer userid);
 
     //管理员根据排片id查看影片在本场次所有订单列表
     IPage<Orders> getOrdersListByScheduleId(Page p, QueryWrapper queryWrapper);

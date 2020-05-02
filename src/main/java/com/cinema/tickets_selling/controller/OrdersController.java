@@ -9,6 +9,8 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api")
 @CrossOrigin
@@ -37,6 +39,11 @@ public class OrdersController {
         return true;
     }
 
+    @ApiOperation("用户根据用户id获取订单信息")
+    @GetMapping("/user/order_list")
+    public List<Orders> getUserOrdersList(@RequestParam("userid") Integer userid){
+        return ordersService.getUserOrdersList(userid);
+    }
 
     @ApiOperation("用户根据订单id获取订单信息")
     @GetMapping("/user/order_info")
