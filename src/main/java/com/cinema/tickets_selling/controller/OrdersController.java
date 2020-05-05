@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.cinema.tickets_selling.entity.Orders;
+import com.cinema.tickets_selling.entity.VO.OrderScheduleMovieOV;
 import com.cinema.tickets_selling.service.OrdersService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -41,7 +42,7 @@ public class OrdersController {
 
     @ApiOperation("用户根据用户id获取订单信息")
     @GetMapping("/user/order_list")
-    public List<Orders> getUserOrdersList(@RequestParam("userid") Integer userid){
+    public List<OrderScheduleMovieOV> getUserOrdersList(@RequestParam("userid") Integer userid){
         return ordersService.getUserOrdersList(userid);
     }
 

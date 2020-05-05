@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.cinema.tickets_selling.dao.OrdersMapper;
 import com.cinema.tickets_selling.entity.Orders;
+import com.cinema.tickets_selling.entity.VO.OrderScheduleMovieOV;
 import com.cinema.tickets_selling.service.OrdersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -43,10 +44,11 @@ public class OrdersServiceImpl extends ServiceImpl<OrdersMapper, Orders> impleme
     }
 
     @Override
-    public List<Orders> getUserOrdersList(Integer userid) {
-        QueryWrapper<Orders> queryWrapper = new QueryWrapper<>();
-        queryWrapper.ge("orderid","0").eq("userid",userid);
-        return ordersMapper.selectList(queryWrapper);
+    public List<OrderScheduleMovieOV> getUserOrdersList(Integer userid) {
+//        QueryWrapper<Orders> queryWrapper = new QueryWrapper<>();
+//        queryWrapper.ge("orderid","0").eq("userid",userid);
+//        return ordersMapper.selectList(queryWrapper);
+        return ordersMapper.getUserOrdersList(userid);
     }
 
     @Override
