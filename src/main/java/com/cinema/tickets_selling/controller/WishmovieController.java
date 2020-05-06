@@ -21,9 +21,8 @@ public class WishmovieController {
 
     @ApiOperation("用户添加想看影片")
     @PostMapping("/user/addwishmovie")
-    public Wishmovie addWishMovie(@RequestParam("userid") Integer userid,
-                                  @RequestParam("movieid") Integer movieid){
-        return wishmovieService.addWishMovie(userid,movieid);
+    public Wishmovie addWishMovie(@RequestBody Wishmovie wishmovie){
+        return wishmovieService.addWishMovie(wishmovie);
     }
 
     @ApiOperation("用户取消想看影片")

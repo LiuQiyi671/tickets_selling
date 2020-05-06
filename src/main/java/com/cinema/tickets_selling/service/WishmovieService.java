@@ -6,7 +6,7 @@ import com.cinema.tickets_selling.entity.Wishmovie;
 public interface WishmovieService extends IService<Wishmovie> {
 
     //用户添加想看影片
-    Wishmovie addWishMovie(Integer userid, Integer movieid);
+    Wishmovie addWishMovie(Wishmovie wishmovie);
 
     //用户取消想看影片
     void removeWishMovie(Integer userid, Integer movieid);

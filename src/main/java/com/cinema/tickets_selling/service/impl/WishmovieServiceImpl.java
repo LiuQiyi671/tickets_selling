@@ -20,11 +20,7 @@ public class WishmovieServiceImpl extends ServiceImpl<WishmovieMapper, Wishmovie
 
 
     @Override
-    public Wishmovie addWishMovie(Integer userid, Integer movieid) {
-        Wishmovie wishmovie = new Wishmovie();
-        wishmovie.setWishmovieid(null);
-        wishmovie.setUserid(userid);
-        wishmovie.setMovieid(movieid);
+    public Wishmovie addWishMovie(Wishmovie wishmovie) {
         int rows = wishmovieMapper.insert(wishmovie);
         if (rows == 1) {
             return wishmovie;
