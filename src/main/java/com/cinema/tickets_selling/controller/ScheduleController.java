@@ -10,6 +10,9 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
+import java.util.List;
+
 @RestController
 @RequestMapping("/api")
 @CrossOrigin
@@ -39,9 +42,9 @@ public class ScheduleController {
     }
 
 
-    @ApiOperation("管理员根据排片id获取排片信息")
-    @GetMapping("/admin/schedule_info")
-    public Schedule showScheduleInfo(@RequestParam("id") Integer id){
+    @ApiOperation("根据影片id获取排片信息")
+    @GetMapping("/schedule/schedule_list")
+    public List<Schedule> showScheduleInfo(@RequestParam("id") Integer id){
         return scheduleService.showScheduleInfo(id);
     }
 
@@ -68,5 +71,32 @@ public class ScheduleController {
         queryWrapper.gt("scheduleid", 0).eq("movieid",movieid);
 
         return scheduleService.getScheduleListByMovieId(p,queryWrapper);
+    }
+
+    @ApiOperation("根据排片id查询本场次所有信息")
+    @GetMapping("/schedule/schedule_info")
+    public Schedule getScheduleListByMovieId(@RequestParam("scheduleid") Integer scheduleid){
+        return scheduleService.getScheduleInfo(scheduleid);
+    }
+
+    @ApiOperation("根据排片id更新场次座位信息")
+    @PostMapping("/schedule/update_schedule")
+    public Boolean updateScheduleSeatInfo(@RequestParam("scheduleid") Integer scheduleid,
+                                          @RequestParam("movieid") Integer movieid,
+                                          @RequestParam("hallname") String hallname,
+                                          @RequestParam("showdate") String showdate,
+                                          @RequestParam("showtime") String showtime,
+                                          @RequestParam("price") BigDecimal price,
+                                          @RequestParam("seat") String seat){
+        Schedule schedule = new Schedule();
+        schedule.setScheduleid(scheduleid);
+        schedule.setMovieid(movieid);
+        schedule.setHallname(hallname);
+        schedule.setShowdate(showdate);
+        schedule.setShowtime(showtime);
+        schedule.setPrice(price);
+        schedule.setSeat(seat);
+        scheduleService.updateScheduleSeatInfo(schedule);
+        return true;
     }
 }

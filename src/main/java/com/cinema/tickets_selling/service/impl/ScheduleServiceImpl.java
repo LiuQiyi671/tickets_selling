@@ -10,6 +10,8 @@ import com.cinema.tickets_selling.service.ScheduleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ScheduleServiceImpl extends ServiceImpl<ScheduleMapper, Schedule> implements ScheduleService {
 
@@ -36,8 +38,8 @@ public class ScheduleServiceImpl extends ServiceImpl<ScheduleMapper, Schedule> i
     }
 
     @Override
-    public Schedule showScheduleInfo(Integer scheduleid) {
-        return scheduleMapper.selectById(scheduleid);
+    public List<Schedule> showScheduleInfo(Integer movieid) {
+        return scheduleMapper.showScheduleInfo(movieid);
     }
 
 //    @Override
@@ -59,5 +61,20 @@ public class ScheduleServiceImpl extends ServiceImpl<ScheduleMapper, Schedule> i
         } catch (Exception e) {
             throw new RuntimeException(e.getMessage());
         }
+    }
+
+    @Override
+    public Schedule updateScheduleSeatInfo(Schedule schedule) {
+        int rows = scheduleMapper.updateById(schedule);
+        if (rows == 1) {
+            return schedule;
+        } else {
+            return null;
+        }
+    }
+
+    @Override
+    public Schedule getScheduleInfo(Integer scheduleid) {
+        return scheduleMapper.selectById(scheduleid);
     }
 }
