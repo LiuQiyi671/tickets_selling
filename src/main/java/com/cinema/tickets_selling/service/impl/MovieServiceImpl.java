@@ -1,6 +1,8 @@
 package com.cinema.tickets_selling.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.cinema.tickets_selling.dao.MovieMapper;
 import com.cinema.tickets_selling.entity.Movie;
@@ -71,5 +73,25 @@ public class MovieServiceImpl extends ServiceImpl<MovieMapper, Movie> implements
         QueryWrapper queryWrapper = new QueryWrapper();
         queryWrapper.eq("moviename",moviename);
         return movieMapper.selectOne(queryWrapper);
+    }
+
+    @Override
+    public IPage<Movie> getAdminHotmovieList(Page p, QueryWrapper queryWrapper) throws RuntimeException{
+        try {
+            IPage<Movie> iPage = movieMapper.selectPage(p,queryWrapper);
+            return iPage;
+        } catch (Exception e) {
+            throw new RuntimeException(e.getMessage());
+        }
+    }
+
+    @Override
+    public IPage<Movie> getAdminUpcomingmovieList(Page p, QueryWrapper queryWrapper) throws RuntimeException{
+        try {
+            IPage<Movie> iPage = movieMapper.selectPage(p,queryWrapper);
+            return iPage;
+        } catch (Exception e) {
+            throw new RuntimeException(e.getMessage());
+        }
     }
 }

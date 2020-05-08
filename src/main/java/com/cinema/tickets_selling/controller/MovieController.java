@@ -1,5 +1,8 @@
 package com.cinema.tickets_selling.controller;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.cinema.tickets_selling.entity.Movie;
 import com.cinema.tickets_selling.service.MovieService;
 import io.swagger.annotations.Api;
@@ -37,11 +40,12 @@ public class MovieController {
                           @RequestParam("movielanguage") String movielanguage,
                           @RequestParam("moviedescription") String moviedescription,
                           @RequestParam("moviepublicdate") String moviepublicdate,
-                          @RequestParam("moviewishpeoplenum") Integer moviewishpeoplenum) throws ParseException, IOException {
+                          @RequestParam("moviewishpeoplenum") Integer moviewishpeoplenum,
+                          @RequestParam("movieid") Integer movieid) throws ParseException, IOException {
         Movie movie = new Movie();
         movie.setMovietype(movietype);
         movie.setMoviename(moviename);
-        movie.setMovieid(null);
+        movie.setMovieid(movieid);
         movie.setMoviepublicdate(moviepublicdate);
         movie.setMovielanguage(movielanguage);
         movie.setMovieduration(movieduration);
@@ -95,16 +99,25 @@ public class MovieController {
     }
 
     @ApiOperation("管理员查询所有热映电影")
-    @GetMapping("/admin/movie/hot_movie_list")
-    public List<Movie> getHotMovieList(){
-        return movieService.getHotMovieList();
+    @GetMapping("/admin/movie/hot_movie_list/{page}")
+    public IPage<Movie> getHotMovieList(@PathVariable("page") int page)
+    {
+        Page<Movie> p = new Page<Movie>(page,5);
+        QueryWrapper<Movie> queryWrapper = new QueryWrapper<>();
+        queryWrapper.gt("movieid", 0).eq("movieclassify","热映影片");
+
+        return movieService.getAdminHotmovieList(p,queryWrapper);
     }
 
 
     @ApiOperation("管理员查询所有即将上映电影")
-    @GetMapping("/admin/movie/upcoming_movie_list")
-    public List<Movie> getUpcomingMovieList(){
-        return movieService.getUpcomingMovieList();
+    @GetMapping("/admin/movie/upcoming_movie_list/{page}")
+    public IPage<Movie> getUpcomingMovieList(@PathVariable("page") int page){
+        Page<Movie> p = new Page<Movie>(page,5);
+        QueryWrapper<Movie> queryWrapper = new QueryWrapper<>();
+        queryWrapper.gt("movieid", 0).eq("movieclassify","热映影片");
+
+        return movieService.getAdminHotmovieList(p,queryWrapper);
     }
 
     @ApiOperation("管理员根据电影名称查询电影信息")
