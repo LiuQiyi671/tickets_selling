@@ -67,8 +67,34 @@ public class MovieController {
     }
 
     @ApiOperation("管理员修改电影信息")
-    @PostMapping("/admin/movie/update_movie/{id}")
-    public Boolean updateMovie(@PathVariable("id") Movie movie){
+    @PostMapping("/admin/movie/update_movie")
+    public Boolean updateMovie(@RequestParam("file")MultipartFile file,
+                               @RequestParam("moviename") String moviename,
+                               @RequestParam("movieclassify") String movieclassify,
+                               @RequestParam("moviedirector") String moviedirector,
+                               @RequestParam("movietype") String movietype,
+                               @RequestParam("moviecountry") String moviecountry,
+                               @RequestParam("movieduration") String movieduration,
+                               @RequestParam("movieactor") String movieactor,
+                               @RequestParam("movielanguage") String movielanguage,
+                               @RequestParam("moviedescription") String moviedescription,
+                               @RequestParam("moviepublicdate") String moviepublicdate,
+                               @RequestParam("moviewishpeoplenum") Integer moviewishpeoplenum,
+                               @RequestParam("movieid") Integer movieid) throws IOException {
+        Movie movie = new Movie();
+        movie.setMovietype(movietype);
+        movie.setMoviename(moviename);
+        movie.setMovieid(movieid);
+        movie.setMoviepublicdate(moviepublicdate);
+        movie.setMovielanguage(movielanguage);
+        movie.setMovieduration(movieduration);
+        movie.setMoviedirector(moviedirector);
+        movie.setMoviedescription(moviedescription);
+        movie.setMoviecountry(moviecountry);
+        movie.setMovieclassify(movieclassify);
+        movie.setMovieactor(movieactor);
+        movie.setMoviewishpeoplenum(moviewishpeoplenum);
+        movie.setFile(file.getBytes());
         movieService.updateMovie(movie);
         return true;
     }
@@ -115,7 +141,7 @@ public class MovieController {
     public IPage<Movie> getUpcomingMovieList(@PathVariable("page") int page){
         Page<Movie> p = new Page<Movie>(page,5);
         QueryWrapper<Movie> queryWrapper = new QueryWrapper<>();
-        queryWrapper.gt("movieid", 0).eq("movieclassify","热映影片");
+        queryWrapper.gt("movieid", 0).eq("movieclassify","即将上映");
 
         return movieService.getAdminHotmovieList(p,queryWrapper);
     }
