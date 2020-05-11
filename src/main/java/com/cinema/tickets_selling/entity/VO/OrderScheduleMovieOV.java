@@ -50,6 +50,9 @@ public class OrderScheduleMovieOV implements Serializable {
     //影片单价
     private BigDecimal price;
 
+//    场次座位
+    private String seat;
+
     //影片名称
     private String moviename;
 
