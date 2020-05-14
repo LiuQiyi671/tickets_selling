@@ -37,4 +37,10 @@ public class WishmovieController {
     public Integer[] getWishMovieByUserId(@RequestParam("userid") Integer userid){
         return wishmovieService.getWishMovieByUserId(userid);
     }
+
+    @ApiOperation("根据影片id查看想看影片人数")
+    @GetMapping("/user/getmoviewishpeoplenum")
+    public Integer getWishpeoplenumByMovieid(@RequestParam("movieid") Integer movieid){
+        return wishmovieService.getWishpeoplenumByMovieid(movieid);
+    }
 }

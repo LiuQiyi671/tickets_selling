@@ -50,4 +50,11 @@ public class WishmovieServiceImpl extends ServiceImpl<WishmovieMapper, Wishmovie
 
         return intArr;
     }
+
+    @Override
+    public Integer getWishpeoplenumByMovieid(Integer movieid) {
+        QueryWrapper<Wishmovie> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("movieid",movieid);
+        return wishmovieMapper.selectList(queryWrapper).size();
+    }
 }

@@ -13,4 +13,7 @@ public interface WishmovieService extends IService<Wishmovie> {
 
     //用户根据用户id查询其所有想看影片id列表
     Integer[] getWishMovieByUserId(Integer userid);
+
+//    根据movieid查看此影片想看人数
+    Integer getWishpeoplenumByMovieid(Integer movieid);
 }
