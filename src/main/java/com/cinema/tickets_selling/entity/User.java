@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 @Data
 @TableName("user")
@@ -28,5 +29,7 @@ public class User implements Serializable {
     //用户性别
     private String gender;
 
+    //用户余额
+    private BigDecimal money;
 
 }

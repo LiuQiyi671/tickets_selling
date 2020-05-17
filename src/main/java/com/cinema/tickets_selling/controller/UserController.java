@@ -9,6 +9,8 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
+
 
 @RestController
 @RequestMapping("/api")
@@ -50,7 +52,8 @@ public class UserController {
                               @RequestParam("password") String password,
                               @RequestParam("tel") String tel,
                               @RequestParam("email") String email,
-                              @RequestParam("gender") String gender){
+                              @RequestParam("gender") String gender,
+                              @RequestParam("money") BigDecimal money){
         User user = new User();
         user.setUserid(userid);
         user.setUsername(username);
@@ -58,6 +61,7 @@ public class UserController {
         user.setTel(tel);
         user.setEmail(email);
         user.setGender(gender);
+        user.setMoney(money);
         userService.updateUser(user);
         return true;
     }
