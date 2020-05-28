@@ -18,7 +18,7 @@ public class Orders implements Serializable {
     //用户id
     private Integer userid;
 
-    //排片id
+    //场次id
     private Integer scheduleid;
 
     //下单手机号码
@@ -33,7 +33,7 @@ public class Orders implements Serializable {
     //电影票总价
     private BigDecimal tickettotalprice;
 
-    //座位信息
+    //订单座位信息
     private String orderseat;
 
     //手机取票码

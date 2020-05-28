@@ -10,7 +10,7 @@ import java.math.BigDecimal;
 @Data
 @TableName("schedule")
 public class Schedule implements Serializable {
-    //主键：排片id
+    //主键：场次id
     @TableId
     private Integer scheduleid;
 
@@ -29,7 +29,7 @@ public class Schedule implements Serializable {
     //影片单价
     private BigDecimal price;
 
-    //座位信息
+    //场次座位信息
     private String seat;
 
 //    @TableField(exist = false)

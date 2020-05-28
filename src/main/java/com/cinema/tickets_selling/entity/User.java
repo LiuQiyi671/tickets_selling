@@ -29,7 +29,7 @@ public class User implements Serializable {
     //用户性别
     private String gender;
 
-    //用户余额
+    //用户账户余额
     private BigDecimal money;
 
 }

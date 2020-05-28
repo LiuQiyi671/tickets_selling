@@ -41,7 +41,7 @@ public class Movie implements Serializable {
     //影片封面图
     private byte[] file;
 
-    //影片上映时间
+    //影片上映日期
     private String moviepublicdate;
 
     //影片简介
